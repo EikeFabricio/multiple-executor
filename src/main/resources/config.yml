@@ -1,0 +1,28 @@
+Messages:
+  Error:
+    NO_ID: "&cThere's a error, no informed id. Did you mean /mpe <existent id> [params]?"
+    INSUFFICIENT_PERMISSIONS: "&cThere's a error, insufficient permissions."
+    INTERNAL: "&cThere's a internal error, check the console."
+    NO_PERMISSION: "&cThere's a error, you don't have permission to use that command."
+    PARAMS_REQUIRED:  "&cThere's a error, it requires these params: {params}"
+  Success:
+    DONE: "&aCommand executed."
+
+Commands:
+  # This name isn't important
+  MineCreation:
+    # This field will be used on /mpe <id> [params]
+    ID: mine_creation
+    # This field is optional, if it exists, will use that, if not, will use the mpe.execute permission.
+    Permission: mpe.execute.minecreation
+    # This field is optional, if not exists, will execute the commands without the params.
+    Params:
+      - '<region_name>'
+    # This is the most important part, the commands, it will execute as player, not as console.
+    # The / char is optional, by the way.
+    Commands:
+      - '/rg create <region_name>'
+      - '/rg flag <region_name> pvp deny'
+      - '/rg flag <region_name> block-place deny'
+      - '/rg flag <region_name> block-break allow'
+      - '/rg setpriority <region_name> 10'

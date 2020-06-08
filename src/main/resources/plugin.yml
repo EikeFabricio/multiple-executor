@@ -1,0 +1,10 @@
+name: MultipleExecutor
+version: ${project.version}
+main: net.eike.plugins.mpe.MultipleExecutor
+authors: [Eike]
+description: A plugin created to help people to execute a lot of commands at the same time.
+commands:
+  mpe:
+    description: Execute any command with ID.
+    aliases:
+      - multipleexecutor
