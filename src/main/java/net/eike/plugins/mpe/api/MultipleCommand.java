@@ -4,10 +4,8 @@ import java.util.List;
 
 public abstract class MultipleCommand {
 
-    private final List<String> commands;
-    private final String permission;
-    private final List<String> params;
-    private final String id;
+    private List<String> commands, params;
+    private String permission, id;
 
     public MultipleCommand(List<String> commands, List<String> params, String id) {
         this.commands = commands;
@@ -37,5 +35,21 @@ public abstract class MultipleCommand {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    public void setCommands(List<String> commands) {
+        this.commands = commands;
+    }
+
+    public void setParams(List<String> params) {
+        this.params = params;
     }
 }

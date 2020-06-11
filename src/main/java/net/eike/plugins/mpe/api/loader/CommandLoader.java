@@ -27,7 +27,7 @@ public class CommandLoader {
 
             List<String> params = (ArrayList<String>) valueOrAbsent(path + "Params", new ArrayList<>());
             List<String> cmds = (ArrayList<String>) valueOrAbsent(path + "Commands", new ArrayList<>());
-            String id = (String) Objects.requireNonNull(valueOrAbsent(path + "ID", null));
+            String id = (String) Objects.requireNonNull(value(path + "ID"));
             String permission = (String) valueOrAbsent(path + "Permission", "mpe.execute");
 
             commands.add(new MultipleCommand(cmds, permission, params, id) {});
@@ -48,5 +48,9 @@ public class CommandLoader {
 
     private Object valueOrAbsent(String path, Object absent) {
         return getFile().contains(path) ? getFile().get(path) : absent;
+    }
+
+    private Object value(String path) {
+        return valueOrAbsent(path, null);
     }
 }

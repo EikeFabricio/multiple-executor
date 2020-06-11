@@ -6,7 +6,6 @@ import net.eike.plugins.mpe.api.loader.CommandLoader;
 import net.eike.plugins.mpe.api.messages.Message;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,24 +17,24 @@ public class ExecuteCommand extends MPECommand {
     private final Message message;
 
     public ExecuteCommand(JavaPlugin javaPlugin, CommandLoader commandLoader, Message message) {
-        super("mpe", javaPlugin);
+        super("mpe", javaPlugin, null, false, false);
 
         this.commandLoader = commandLoader;
         this.message = message;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void execute(CommandSender sender, String[] args) {
         Message message = getMessage();
 
         if (!sender.hasPermission("mpe.execute")) {
             sender.sendMessage(message.NO_PERMISSION);
-            return true;
+            return;
         }
 
         if (args.length == 0) {
             sender.sendMessage(message.NO_ID);
-            return true;
+            return;
         }
 
         List<MultipleCommand> commands = getCommandLoader().getMultipleCommands();
@@ -50,7 +49,7 @@ public class ExecuteCommand extends MPECommand {
         if (multipleCommand == null) {
             sender.sendMessage(message.NO_ID);
 
-            return true;
+            return ;
         }
 
         List<String> params = multipleCommand.getParams();
@@ -58,13 +57,13 @@ public class ExecuteCommand extends MPECommand {
         if (!params.isEmpty()) {
             if ((args.length - 1) != params.size()) {
                 sender.sendMessage(message.PARAMS_REQUIRED.replace("{params}", listToString(params)));
-                return true;
+                return;
             }
         }
 
         if (!sender.hasPermission(multipleCommand.getPermission())) {
             sender.sendMessage(message.INSUFFICIENT_PERMISSIONS);
-            return true;
+            return;
         }
 
         for (String cmd : multipleCommand.getCommands()) {
@@ -90,8 +89,6 @@ public class ExecuteCommand extends MPECommand {
         }
 
         sender.sendMessage(message.SUCCESS);
-
-        return false;
     }
 
     private CommandLoader getCommandLoader() {

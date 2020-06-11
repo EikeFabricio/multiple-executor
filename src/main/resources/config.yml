@@ -1,15 +1,35 @@
 Messages:
   Error:
-    NO_ID: "&cThere's a error, no informed id. Did you mean /mpe <existent id> [params]?"
+    NO_ID: "&cThere's a error, no informed id. Did you mean /mpe <existent id | or a list/create subcommand> [params]?"
     INSUFFICIENT_PERMISSIONS: "&cThere's a error, insufficient permissions."
     INTERNAL: "&cThere's a internal error, check the console."
     NO_PERMISSION: "&cThere's a error, you don't have permission to use that command."
     PARAMS_REQUIRED:  "&cThere's a error, it requires these params: {params}"
+    EXISTENT_ID: "&cThere's a error, that ID already exists!"
   Success:
     DONE: "&aCommand executed."
-
+    # Available placeholders:
+    # <id> | Displays the command ID
+    # <permission> | Displays the permission of the command, if don't have one, it will be mpe.execute
+    # <params> | Displays the command param
+    # <commands> | Displays the commands which will be executed by the sender (console or player)
+    CREATED: "&aCommand <id> created!"
+    CANCELLED: "&eCreation of <id> cancelled!"
+  Misc:
+    # Available placeholders:
+    # <id> | Displays the command ID
+    # <permission> | Displays the permission of the command, if don't have one, it will be mpe.execute
+    # <params> | Displays the command param
+    # <commands> | Displays the commands which will be executed by the sender (console or player)
+    LIST_FORMAT: "&e* &a<id> &7: &f<permission> &7|&f /mpe <id>"
+    AVAILABLE_COMMANDS: "Available commands&a:"
+  State:
+    '0': "&aYou're creating a new MultipleCommand. Type the permission in chat, it will be mpe.execute.<thingYourWrote>, don't you want one? Type '.end'."
+    '1': "&aType all params do you require. If you don't have one/don't want one, type '.end'"
+    '2': "&aOkay, you're in the next step. Type all of the commands you want on the chat, when it ends, type '.end'."
+    '3': "&aNice! You're on the last step. Type '.confirm' to create or anything to cancel the command creation."
 Commands:
-  # This name isn't important
+  # This name isn't important, but need to be unique
   MineCreation:
     # This field will be used on /mpe <id> [params]
     ID: mine_creation
@@ -26,3 +46,4 @@ Commands:
       - '/rg flag <region_name> block-place deny'
       - '/rg flag <region_name> block-break allow'
       - '/rg setpriority <region_name> 10'
+
